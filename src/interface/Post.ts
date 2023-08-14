@@ -3,5 +3,6 @@ export default interface Post {
   postTitle:string;
   postDescription:string;
   postDate?:Date;
-  isPublic:boolean
+  isPublic:boolean;
+  userId:number;
 }

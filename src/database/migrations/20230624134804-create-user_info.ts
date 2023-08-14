@@ -18,6 +18,7 @@ export default {
       postTitle: {
         type: DataTypes.STRING,
         allowNull: false,
+        field: 'post_title'
       },
       postDescription: {
         type: DataTypes.TEXT,
