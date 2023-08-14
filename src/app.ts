@@ -1,18 +1,34 @@
-import express, { Request, Response } from 'express';
-import Post from './database/models/Post';
-import User from './database/models/User';
+import express from 'express';
+import 'express-async-errors';
+import router from './routes';
 
-const app = express();
+// import path from 'path';
 
-app.use(express.json());
+// const uploadsDirectory = path.resolve(__dirname, '../uploads');
 
-app.get('/', (_req: Request, res: Response) => {
-  res.status(200).send('Aplicação está funcionando!');
-});
+class App {
+  public app: express.Express;
 
-app.get('/teste', async (_req: Request, res: Response) => {
-  const response = await Post.findAll({ include: [{ model: User, as: 'user' }] });
-  res.status(200).json(response);
-});
+  constructor() {
+    this.app = express();
+    this.app.use(express.json());
+    // this.app.use('/uploads', express.static(uploadsDirectory));
+    this.routes();
+    this.app.get('/', (_req, res) => res.status(200).send('portfolio on'));
+  }
 
-export default app;
+  private routes(): void {
+    this.app.use(router);
+  }
+
+  public start(PORT: string | number) {
+    this.app.listen({
+      port: PORT,
+      host: '0.0.0.0',
+    }, () => console.log(
+      `Server is running on PORT: ${PORT}`,
+    ));
+  }
+}
+
+export default App;
