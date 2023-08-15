@@ -1,4 +1,4 @@
-import { IPostModel } from '../interface/IPostModel';
+import { IPostModel } from '../interface/Models';
 import IPostService from '../interface/IPostService';
 import Post from '../interface/Post';
 

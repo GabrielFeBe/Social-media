@@ -1,12 +1,12 @@
-import { DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
 import FriendRequest from './FriendRequest';
 import db from './index';
 
 const sequelize = db;
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-  declare id: number;
-
+  declare id: CreationOptional<number>;
+  
   declare email: string;
 
   declare password: string;

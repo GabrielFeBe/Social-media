@@ -1,5 +1,5 @@
 import Post from '../../database/models/Post';
-import { IPostModel } from '../../interface/IPostModel';
+import { IPostModel } from '../../interface/Models';
 import IPost from '../../interface/Post';
 
 class PostModel implements IPostModel {
