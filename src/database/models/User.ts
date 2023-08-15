@@ -1,4 +1,5 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import FriendRequest from './FriendRequest';
 import db from './index';
 
 const sequelize = db;
@@ -37,6 +38,18 @@ User.init({
   tableName: 'new_users',
   timestamps: false,
   underscored: true,
+});
+
+User.belongsToMany(User, {
+  as: 'requester',
+  foreignKey: 'requesterId',
+  through: FriendRequest,
+});
+
+User.belongsToMany(User, {
+  as: 'requested',
+  foreignKey: 'targetId',
+  through: FriendRequest,
 });
 
 export default User;

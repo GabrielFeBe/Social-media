@@ -46,7 +46,7 @@ Post.init({
     timestamps: false,
     underscored: true,
 });
-Post.belongsTo(User_1.default, { foreignKey: { allowNull: false, name: 'userId' } });
+Post.belongsTo(User_1.default, { foreignKey: { allowNull: false, name: 'userId' }, as: 'user' });
 User_1.default.hasMany(Post, { foreignKey: 'userId', as: 'posts' });
 exports.default = Post;
 //# sourceMappingURL=Post.js.map

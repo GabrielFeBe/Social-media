@@ -8,6 +8,11 @@ exports.default = {
                 password: 'teste',
                 name: 'Gabriel Fernandes',
             },
+            {
+                email: 'cornoGado@hotmail.com',
+                password: 'alohapedrita',
+                name: 'Matheus Ramos',
+            },
         ], {});
     },
     down(queryInterface) {
