@@ -1,22 +1,33 @@
 import { Request, Response } from 'express';
 import IPostController from '../interface/IPostController';
+import IPostService from '../interface/IPostService';
 
 export default class PostController implements IPostController {
-  private service: any;
+  private Service: IPostService;
 
-  getPostId(req: Request, res: Response): Promise<Response> {
-
+  constructor(service:IPostService) {
+    this.Service = service;
   }
 
-  createPost(req: Request, res: Response): Promise<Response> {
-    throw new Error('Method not implemented.');
+  async getPostId(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const response = await this.Service.getPostId(+id);
+    return res.status(200).json(response);
   }
 
-  deletePostId(req: Request, res: Response): Promise<Response> {
-    throw new Error('Method not implemented.');
+  async createPost(req: Request, res: Response): Promise<Response> {
+    const response = await this.Service.createPost(req.body);
+    return res.status(201).json(response);
   }
 
-  getAllPosts(req: Request, res: Response): Promise<Response> {
-    throw new Error('Method not implemented.');
+  async deletePostId(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const response = await this.Service.deletePostId(+id);
+    return res.status(204).json(response);
+  }
+
+  async getAllPosts(req: Request, res: Response): Promise<Response> {
+    const response = await this.Service.getAllPosts();
+    return res.status(200).json(response); 
   }
 }
