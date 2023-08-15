@@ -1,6 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
-import router from './routes';
+import router from './router';
 
 // import path from 'path';
 
