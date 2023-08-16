@@ -6,33 +6,49 @@ const sequelize = db;
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
-  
+  declare description: string;
   declare email: string;
-
+  declare local: string;
   declare password: string;
-
-  declare name:string;
+  declare profilePicture: string;
+  declare name: string;
 }
 
 User.init({
+
   id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    primaryKey: true,
+    allowNull: false,
     autoIncrement: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    primaryKey: true,
+    type: DataTypes.INTEGER,
   },
   email: {
-    type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    type: DataTypes.STRING,
   },
+  password: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  profilePicture: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: 'profile_picture'
+  },
+  local: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  }
+
+
 }, {
   sequelize,
   tableName: 'new_users',

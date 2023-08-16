@@ -23,6 +23,19 @@ export default {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      profilePicture: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        field: 'profile_picture'
+      },
+      local: {
+        allowNull: false,
+        type: DataTypes.STRING
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      }
     });
   },
 
