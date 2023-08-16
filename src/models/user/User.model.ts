@@ -18,6 +18,8 @@ export default class UserModel implements IUserModel {
   }
 
   async findAll(): Promise<IUser[]> {
+    const perPage = 100;
+    const page = 1;
     const response = await this.Model.findAll({
       attributes: ['id', 'name', 'email'],
       include: [
@@ -30,6 +32,8 @@ export default class UserModel implements IUserModel {
           },
         },
       ],
+      offset: page * perPage - perPage,
+      limit: perPage, 
     });
 
     return response;
