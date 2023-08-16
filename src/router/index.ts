@@ -1,28 +1,13 @@
-import { Router, Response, Request } from 'express';
-import User from '../database/models/User';
+import { Router } from 'express';
 import PostRouter from './posts.routes';
+import UserRouter from './user.routes';
 
 const router = Router();
 
 const postRoutes = new PostRouter();
+const userRoutes = new UserRouter();
 
 router.use('/posts', postRoutes.router);
-router.use('/user', async (req:Request, res :Response) => {
-  const users = await User.findAll({
-    attributes: ['id', 'name', 'email'],
-    include: [
-      {
-        model: User,
-        as: 'requested',
-        attributes: ['id', 'name', 'email'],
-        through: {
-          attributes: [], // Para evitar trazer informações duplicadas
-        },
-      },
-    ],
-  });
-
-  res.status(200).json(users);
-});
+router.use('/user', userRoutes.router);
 
 export default router;
