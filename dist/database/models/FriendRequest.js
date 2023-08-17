@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const index_1 = __importDefault(require("./index"));
-const User_1 = __importDefault(require("./User"));
 const sequelize = index_1.default;
 class FriendRequest extends sequelize_1.Model {
 }
@@ -25,6 +24,10 @@ FriendRequest.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         field: 'target_id'
+    },
+    status: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false
     }
 }, {
     sequelize,
@@ -32,7 +35,5 @@ FriendRequest.init({
     timestamps: false,
     underscored: true,
 });
-User_1.default.hasMany(FriendRequest, { foreignKey: 'requesterId', as: 'requester' });
-User_1.default.hasMany(FriendRequest, { foreignKey: 'targetId', as: 'requested' });
 exports.default = FriendRequest;
 //# sourceMappingURL=FriendRequest.js.map

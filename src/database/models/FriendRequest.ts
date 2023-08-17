@@ -1,15 +1,18 @@
-import { CreationOptional, DataTypes, ForeignKey, 
-  InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import {
+  CreationOptional, DataTypes, ForeignKey,
+  InferAttributes, InferCreationAttributes, Model
+} from 'sequelize';
 import db from './index';
 import User from './User';
 
 const sequelize = db;
 
 class FriendRequest extends
- Model<InferAttributes<FriendRequest>, InferCreationAttributes<FriendRequest>> {
+  Model<InferAttributes<FriendRequest>, InferCreationAttributes<FriendRequest>> {
   declare id: CreationOptional<number>;
   declare requesterId: ForeignKey<User['id']>;
   declare targetId: ForeignKey<User['id']>;
+  declare status: boolean
 }
 
 FriendRequest.init({
@@ -28,6 +31,10 @@ FriendRequest.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     field: 'target_id'
+  },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
   }
 
 }, {

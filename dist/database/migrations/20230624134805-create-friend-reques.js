@@ -19,6 +19,10 @@ exports.default = {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 field: 'target_id'
+            },
+            status: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false
             }
         });
     },

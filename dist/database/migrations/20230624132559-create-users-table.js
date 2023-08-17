@@ -22,6 +22,19 @@ exports.default = {
                 allowNull: false,
                 type: sequelize_1.DataTypes.STRING,
             },
+            profilePicture: {
+                allowNull: false,
+                type: sequelize_1.DataTypes.STRING,
+                field: 'profile_picture'
+            },
+            local: {
+                allowNull: false,
+                type: sequelize_1.DataTypes.STRING
+            },
+            description: {
+                type: sequelize_1.DataTypes.TEXT,
+                allowNull: false
+            }
         });
     },
     down(queryInterface) {

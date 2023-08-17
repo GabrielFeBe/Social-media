@@ -16,7 +16,7 @@ export default class UserModel implements IUserModel {
     } });
     return response;
   }
-
+  // eslint-disable-next-line
   async findAll(): Promise<IUser[]> {
     const perPage = 100;
     const page = 1;
@@ -26,16 +26,18 @@ export default class UserModel implements IUserModel {
         {
           model: User,
           as: 'requested',
-          attributes: ['id', 'name', 'email'],
+          attributes: ['id', 'name', 'email', 'profilePicture'],
           through: {
-            attributes: [], 
+            attributes: [],
+            where: {
+              status: false,
+            },
           },
         },
       ],
       offset: page * perPage - perPage,
       limit: perPage, 
     });
-
     return response;
   }
 

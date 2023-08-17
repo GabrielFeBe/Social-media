@@ -19,6 +19,10 @@ export default {
         type: DataTypes.INTEGER,
         allowNull: false,
         field: 'target_id'
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
       }
     });
   },
