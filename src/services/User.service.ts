@@ -28,4 +28,9 @@ export default class UserService implements IUserService {
     const response = await this.Model.findAll();
     return response;
   }
+
+  async getAllUserByName(name: string): Promise<IUser[]> {
+    const response = await this.Model.findAllByName(name);
+    return response;
+  }
 }

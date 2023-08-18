@@ -5,4 +5,5 @@ export default interface IUserService{
   createUser(post:IUser): Promise<IUser>
   deleteUserId(id:number): Promise<number>
   getAllUser(): Promise<IUser[]>
+  getAllUserByName(name:string):Promise<IUser[]>
 }

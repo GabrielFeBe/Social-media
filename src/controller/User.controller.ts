@@ -30,4 +30,10 @@ export default class UserController implements IUserController {
     const response = await this.Service.getAllUser();
     return res.status(200).json({ users: response });
   }
+
+  async getAllUserByName(req: Request, res: Response): Promise<Response> {
+    const { name } = req.body;
+    const response = await this.Service.getAllUserByName(name);
+    return res.status(200).json({ users: response });
+  }
 }

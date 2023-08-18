@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import User from '../../database/models/User';
 import { IUserModel } from '../../interface/Models';
 import { IUser } from '../../interface/Tuser';
@@ -54,6 +55,18 @@ export default class UserModel implements IUserModel {
           },
         },
       ],
+    });
+
+    return response;
+  }
+
+  async findAllByName(name: string): Promise<IUser[]> {
+    const response = await this.Model.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${name}%`,
+        },
+      },
     });
 
     return response;

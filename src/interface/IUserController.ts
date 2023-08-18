@@ -5,5 +5,5 @@ export default interface IUserController {
   createUser(req:Request, res:Response): Promise<Response>
   deleteUserId(req:Request, res:Response): Promise<Response>
   getAllUser(req:Request, res:Response): Promise<Response>
-  
+  getAllUserByName(req:Request, res:Response): Promise<Response>
 }

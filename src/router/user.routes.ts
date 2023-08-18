@@ -22,6 +22,12 @@ class UserRouter {
     });
   }
 
+  getAllUserByName() {
+    this.router.get('/names', async (req:Request, res:Response) => {
+      this.controller.getAllUserByName(req, res);
+    });
+  }
+
   getUserId() {
     this.router.get('/:id', async (req:Request, res:Response) => {
       this.controller.getUserId(req, res);
@@ -41,6 +47,7 @@ class UserRouter {
   }
 
   inicializatingRoutes() {
+    this.getAllUserByName();
     this.createUser();
     this.deleteUserId();
     this.getUserId();

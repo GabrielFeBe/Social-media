@@ -6,6 +6,11 @@ export interface ICRUDModelReader<T>{
   findAll():Promise<T[]>
   findById(id:number):Promise<T | null>
 }
+export interface ICRUDModelUserReader<T>{
+  findAll():Promise<T[]>
+  findById(id:number):Promise<T | null>
+  findAllByName(name:string):Promise<T[]>
+}
 export interface ICRUDFriendsModel<T>{
   findAllUserFriends():Promise<T[]>
   findFriendsUserById(id:number):Promise<T | null>
