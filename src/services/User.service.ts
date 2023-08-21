@@ -1,3 +1,5 @@
+import User from '../class/User';
+import Encrypter from '../interface/Encrypter';
 import IUserService from '../interface/IUserService';
 import { IUserModel } from '../interface/Models';
 import { IUser } from '../interface/Tuser';
@@ -5,8 +7,11 @@ import { IUser } from '../interface/Tuser';
 export default class UserService implements IUserService {
   private Model:IUserModel;
 
-  constructor(model:IUserModel) {
+  private EncrypterC : Encrypter;
+
+  constructor(model:IUserModel, encrypter: Encrypter) {
     this.Model = model;
+    this.EncrypterC = encrypter;
   }
 
   async getUserId(id: number): Promise<IUser | null> {
@@ -14,8 +19,10 @@ export default class UserService implements IUserService {
     return response;
   }
 
-  async createUser(post: IUser): Promise<IUser> {
-    const response = await this.Model.create(post);
+  async createUser(user: IUser): Promise<IUser> {
+    const encrypted = this.EncrypterC.encrypt(user.password);
+    const userClas = new User({ ...user, password: encrypted });
+    const response = await this.Model.create(userClas.getUser());
     return response;
   }
 
