@@ -5,5 +5,5 @@ export default interface IPostController {
   createPost(req:Request, res:Response): Promise<Response>
   deletePostId(req:Request, res:Response): Promise<Response>
   getAllPosts(req:Request, res:Response): Promise<Response>
-
+  
 }

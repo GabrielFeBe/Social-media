@@ -9,40 +9,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserService {
-    constructor(model) {
-        this.Model = model;
+class FriendsController {
+    constructor(service) {
+        this.Service = service;
     }
-    getUserId(id) {
+    findFriendsUserById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findById(id);
-            return response;
+            const { id } = req.params;
+            const response = yield this.Service.findFriendsUserById(+id);
+            return res.status(200).json(response);
         });
     }
-    createUser(post) {
+    createFriendRequest(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.create(post);
-            return response;
+            const response = yield this.Service.createFriendRequest(req.body);
+            return res.status(201).json(response);
         });
     }
-    deleteUserId(id) {
+    deleteFriendRequest(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.delete(id);
-            return response;
+            const { id } = req.params;
+            const response = yield this.Service.deleteFriendRequest(+id);
+            return res.status(204).json(response);
         });
     }
-    getAllUser() {
+    findAllUserFriends(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findAll();
-            return response;
+            const response = yield this.Service.findAllUserFriends();
+            return res.status(200).json(response);
         });
     }
-    getAllUserByName(name) {
+    updateFriendRequest(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findAllByName(name);
-            return response;
+            const { id } = req.params;
+            const response = yield this.Service.updateFriendRequest(+id, req.body);
+            return res.status(200).json(response);
         });
     }
 }
-exports.default = UserService;
-//# sourceMappingURL=User.service.js.map
+exports.default = FriendsController;
+//# sourceMappingURL=Friends.controller.js.map

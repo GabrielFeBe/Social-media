@@ -9,40 +9,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserService {
+class FriendsService {
     constructor(model) {
         this.Model = model;
     }
-    getUserId(id) {
+    findFriendsUserById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findById(id);
+            const response = yield this.Model.findFriendsUserById(id);
             return response;
         });
     }
-    createUser(post) {
+    createFriendRequest(post) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.Model.create(post);
             return response;
         });
     }
-    deleteUserId(id) {
+    deleteFriendRequest(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.Model.delete(id);
             return response;
         });
     }
-    getAllUser() {
+    findAllUserFriends() {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findAll();
+            const response = yield this.Model.findAllUserFriends();
             return response;
         });
     }
-    getAllUserByName(name) {
+    updateFriendRequest(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findAllByName(name);
+            const response = yield this.Model.update(id, data);
             return response;
         });
     }
 }
-exports.default = UserService;
-//# sourceMappingURL=User.service.js.map
+exports.default = FriendsService;
+//# sourceMappingURL=Friends.service.js.map

@@ -39,6 +39,13 @@ class UserController {
             return res.status(200).json({ users: response });
         });
     }
+    getAllUserByName(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { name } = req.body;
+            const response = yield this.Service.getAllUserByName(name);
+            return res.status(200).json({ users: response });
+        });
+    }
 }
 exports.default = UserController;
 //# sourceMappingURL=User.controller.js.map
