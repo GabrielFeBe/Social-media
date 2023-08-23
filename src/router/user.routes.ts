@@ -1,11 +1,17 @@
 import { Response, Request, Router } from 'express';
 import UserController from '../controller/User.controller';
+import EncrypterCrypto from '../lib/EcrypteCryptor';
+import TokenJwt from '../lib/TokenJWT';
 import UserModel from '../models/user/User.model';
 import UserService from '../services/User.service';
 
 const model = new UserModel();
 
-const service = new UserService(model);
+const encrypter = new EncrypterCrypto();
+
+const tokenGenerator = new TokenJwt();
+
+const service = new UserService(model, encrypter, tokenGenerator);
 
 class UserRouter {
   router = Router();

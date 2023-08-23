@@ -71,4 +71,11 @@ export default class UserModel implements IUserModel {
 
     return response;
   }
+
+  async findUserByEmail(email: string): Promise<IUser | null> {
+    const response = await this.Model.findOne({ where: {
+      email,
+    } });
+    return response;
+  }
 }

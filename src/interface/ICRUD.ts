@@ -10,6 +10,7 @@ export interface ICRUDModelUserReader<T>{
   findAll():Promise<T[]>
   findById(id:number):Promise<T | null>
   findAllByName(name:string):Promise<T[]>
+  findUserByEmail(email:string):Promise<T | null>
 }
 export interface ICRUDFriendsModel<T>{
   findAllUserFriends():Promise<T[]>
