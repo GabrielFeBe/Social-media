@@ -14,10 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const User_controller_1 = __importDefault(require("../controller/User.controller"));
+const EcrypteCryptor_1 = __importDefault(require("../lib/EcrypteCryptor"));
+const TokenJWT_1 = __importDefault(require("../lib/TokenJWT"));
 const User_model_1 = __importDefault(require("../models/user/User.model"));
 const User_service_1 = __importDefault(require("../services/User.service"));
 const model = new User_model_1.default();
-const service = new User_service_1.default(model);
+const encrypter = new EcrypteCryptor_1.default();
+const tokenGenerator = new TokenJWT_1.default();
+const service = new User_service_1.default(model, encrypter, tokenGenerator);
 class UserRouter {
     constructor() {
         this.router = (0, express_1.Router)();
@@ -49,12 +53,18 @@ class UserRouter {
             this.controller.createUser(req, res);
         }));
     }
+    loginUser() {
+        this.router.post('/login', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            this.controller.loginUser(req, res);
+        }));
+    }
     inicializatingRoutes() {
         this.getAllUserByName();
         this.createUser();
         this.deleteUserId();
         this.getUserId();
         this.getUser();
+        this.loginUser();
     }
 }
 exports.default = UserRouter;

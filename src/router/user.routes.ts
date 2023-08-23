@@ -52,12 +52,19 @@ class UserRouter {
     });
   }
 
+  loginUser() {
+    this.router.post('/login', async (req:Request, res:Response) => {
+      this.controller.loginUser(req, res);
+    });
+  }
+
   inicializatingRoutes() {
     this.getAllUserByName();
     this.createUser();
     this.deleteUserId();
     this.getUserId();
     this.getUser();
+    this.loginUser();
   }
 }
 

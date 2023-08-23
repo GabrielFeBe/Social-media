@@ -36,4 +36,10 @@ export default class UserController implements IUserController {
     const response = await this.Service.getAllUserByName(name);
     return res.status(200).json({ users: response });
   }
+
+  async loginUser(req: Request, res: Response): Promise<Response> {
+    const { email, password } = req.body;
+    const response = await this.Service.loginUser(email, password);
+    return res.status(200).json({ token: response });
+  }
 }

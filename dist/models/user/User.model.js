@@ -88,6 +88,14 @@ class UserModel {
             return response;
         });
     }
+    findUserByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.Model.findOne({ where: {
+                    email,
+                } });
+            return response;
+        });
+    }
 }
 exports.default = UserModel;
 //# sourceMappingURL=User.model.js.map

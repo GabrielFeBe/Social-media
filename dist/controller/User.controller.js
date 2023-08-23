@@ -46,6 +46,13 @@ class UserController {
             return res.status(200).json({ users: response });
         });
     }
+    loginUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email, password } = req.body;
+            const response = yield this.Service.loginUser(email, password);
+            return res.status(200).json({ token: response });
+        });
+    }
 }
 exports.default = UserController;
 //# sourceMappingURL=User.controller.js.map

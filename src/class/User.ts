@@ -8,7 +8,7 @@ export default class User {
     email: z.string().email().min(5),
     password: z.string().min(6),
     name: z.string().min(6),
-    description: z.string().min(200),
+    description: z.string().min(20),
     profilePicture: z.string(),
     local: z.string(),
   });
@@ -27,7 +27,7 @@ export default class User {
 
   constructor(obj:IUser) {
     const result = User.schema.safeParse(obj);
-  
+    console.log(result);
     if (!result.success) {
       const issues = fromZodError(result.error);
       throw new Error(issues.message);
@@ -51,16 +51,3 @@ export default class User {
     };
   }
 }
-
-// export interface IUser {
-//   id?: number;
-//   email: string;
-//   password: string;
-//   name: string;
-//   description:string;
-//   profilePicture:string;
-//   local:string;
-//   requested?:Requester[];
-//   requester?:Requester[];
-//   friends?:Requester[];
-// }

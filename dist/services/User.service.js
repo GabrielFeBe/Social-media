@@ -8,10 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const User_1 = __importDefault(require("../class/User"));
 class UserService {
-    constructor(model) {
+    constructor(model, encrypter, tokenGen) {
         this.Model = model;
+        this.EncrypterC = encrypter;
+        this.TokenGenerator = tokenGen;
     }
     getUserId(id) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -19,9 +25,11 @@ class UserService {
             return response;
         });
     }
-    createUser(post) {
+    createUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.create(post);
+            const encrypted = this.EncrypterC.encrypt(user.password);
+            const userClas = new User_1.default(Object.assign(Object.assign({}, user), { password: encrypted }));
+            const response = yield this.Model.create(userClas.getUser());
             return response;
         });
     }
@@ -41,6 +49,21 @@ class UserService {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.Model.findAllByName(name);
             return response;
+        });
+    }
+    loginUser(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.Model.findUserByEmail(email);
+            if (!response)
+                throw new Error('Usuario não existe');
+            console.log(this.EncrypterC.compare(password, response === null || response === void 0 ? void 0 : response.password));
+            if (!this.EncrypterC.compare(password, response.password))
+                throw new Error('Senha invalida');
+            // const token = this.TokenGenerator.generate({ email:
+            //    response.email,
+            // password: response.password,
+            // id: response.id as number });
+            return 'alo';
         });
     }
 }

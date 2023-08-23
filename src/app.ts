@@ -14,7 +14,7 @@ class App {
     this.app.use(express.json());
     // this.app.use('/uploads', express.static(uploadsDirectory));
     this.routes();
-    this.app.get('/', (_req, res) => res.status(200).send('portfolio on'));
+    this.app.get('/', (_req, res) => res.status(200).send('social media'));
   }
 
   private routes(): void {
