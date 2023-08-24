@@ -13,10 +13,4 @@ router.use('/posts', postRoutes.router);
 router.use('/user', userRoutes.router);
 router.use('/friends', friendsRoutes.router);
 
-// router.get('/friends', async (req:Request, res :Response) => {
-//   const response = await friend.findAllUserFriends();
- 
-//   return res.status(200).json(response);
-// });
-
 export default router;
