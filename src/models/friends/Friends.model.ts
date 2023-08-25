@@ -67,7 +67,7 @@ export default class FriendsModel implements IFriendsModel {
   // eslint-disable-next-line
   async findFriendsUserById(id: number): Promise<IUser | null> {
     const response: IUser | null = await this.UModel.findByPk(id, {
-      attributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name', 'email', 'profilePicture', 'local', 'description'],
       include: [
         {
           model: User,
