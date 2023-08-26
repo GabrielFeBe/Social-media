@@ -30,9 +30,8 @@ export default class FriendsModel implements IFriendsModel {
           as: 'requester',
           attributes: ['id', 'name', 'email', 'profilePicture'],
           through: {
-            attributes: [],
+            attributes: ['status'],
             where: {
-              status: true,
             },
           },
         },
@@ -41,10 +40,7 @@ export default class FriendsModel implements IFriendsModel {
           as: 'requested',
           attributes: ['id', 'name', 'email', 'profilePicture'],
           through: {
-            attributes: [],
-            where: {
-              status: true,
-            },
+            attributes: ['status'],
           },
         },
       ],
@@ -106,7 +102,7 @@ export default class FriendsModel implements IFriendsModel {
     };
     return obj;
   }
-
+  
   async update(id: number, data: Partial<IFriendRequest>): Promise<IFriendRequest | null> {
     const [response] = await this.FModel.update({ status: data.status }, { where: { id } });
     if (response > 0) {
