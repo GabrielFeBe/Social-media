@@ -15,10 +15,10 @@ export default class FriendsModel implements IFriendsModel {
   }
 
   async delete(id: number): Promise<number> {
-    const response = await this.FModel.destroy({ where: {
-      id,
-    } });
-    return response;
+    const request = await this.FModel.findByPk(id);
+    if (!request) throw new Error('user not found');
+    await request.destroy();
+    return 1;
   }
   // eslint-disable-next-line
   async findAllUserFriends(): Promise<IUser[]> {
@@ -103,7 +103,7 @@ export default class FriendsModel implements IFriendsModel {
     return obj;
   }
   
-  async update(id: number, data: Partial<IFriendRequest>): Promise<IFriendRequest | null> {
+  async update(id: number, data: { status:boolean }): Promise<IFriendRequest | null> {
     const [response] = await this.FModel.update({ status: data.status }, { where: { id } });
     if (response > 0) {
       const updatedFriendRequest = await this.FModel.findByPk(id);

@@ -6,5 +6,5 @@ export default interface IFriendsService{
   createFriendRequest(post:IFriendRequest): Promise<IFriendRequest>
   deleteFriendRequest(id:number): Promise<number>
   findAllUserFriends(): Promise<IUser[]>
-  updateFriendRequest(id: number, data: Partial<IFriendRequest>):Promise<IFriendRequest | null>
+  updateFriendRequest(id: number, data: { status:boolean }):Promise<IFriendRequest | null>
 }

@@ -30,7 +30,7 @@ export default class FriendsService implements IFriendsService {
     return response;
   }
 
-  async updateFriendRequest(id: number, data: Partial<IFriendRequest>)
+  async updateFriendRequest(id: number, data: { status:boolean })
     : Promise<IFriendRequest | null> {
     const response = await this.Model.update(id, data);
     return response;

@@ -51,7 +51,11 @@ export default class UserModel implements IUserModel {
           as: 'requested',
           attributes: ['id', 'name', 'email'],
           through: {
-            attributes: [], 
+            attributes: ['id'], 
+            where: {
+              status: false,
+            },
+            as: 'friendRequest',
           },
         },
       ],
