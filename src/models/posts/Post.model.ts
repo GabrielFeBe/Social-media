@@ -1,4 +1,5 @@
 import Post from '../../database/models/Post';
+import User from '../../database/models/User';
 import { IPostModel } from '../../interface/Models';
 import IPost from '../../interface/Post';
 
@@ -18,7 +19,13 @@ class PostModel implements IPostModel {
   }
 
   async findAll(): Promise<IPost[]> {
-    const response = await this.Model.findAll();
+    const response = await this.Model.findAll({
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: ['id', 'name', 'email', 'profilePicture'],
+      }],
+    });
     return response;
   }
 
