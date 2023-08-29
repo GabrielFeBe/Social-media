@@ -8,6 +8,7 @@ export default class TokenJwt implements TokenGenerator {
 
   private jwtExpiration = process.env.JWT_EXPIRATION || (60 * 60 * 24 * 7);
 
+  // tenho que colocar o JWT validator no programa e o ErrorMiddleware
   generate(user: UserDefault): string {
     const token = this.JWT.sign(
       { id: user.id, email: user.email }, 
