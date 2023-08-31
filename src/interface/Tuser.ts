@@ -13,6 +13,7 @@ export interface IUser {
   description:string;
   profilePicture:string;
   local:string;
+  token?:string;
   requested?:Requester[];
   requester?:Requester[];
   friends?:Requester[];

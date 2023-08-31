@@ -5,4 +5,5 @@ export default interface Post {
   postDate?:Date;
   isPublic:boolean;
   userId:number;
+  postPicture?:string;
 }

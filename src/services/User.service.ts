@@ -27,7 +27,11 @@ export default class UserService implements IUserService {
     const encrypted = this.EncrypterC.encrypt(user.password);
     const userClas = new User({ ...user, password: encrypted });
     const response = await this.Model.create(userClas.getUser());
-    return response;
+    const token = this.TokenGenerator.generate({ email:
+      response.email,
+    password: response.password,
+    id: response.id as number });
+    return { ...response, token };
   }
 
   async deleteUserId(id: number): Promise<number> {
