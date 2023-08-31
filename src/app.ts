@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import router from './router';
+import ErrorMiddleware from './middleware/ErrorMiddleware';
 
 // import path from 'path';
 
@@ -17,6 +18,7 @@ class App {
     // this.app.use('/uploads', express.static(uploadsDirectory));
     this.routes();
     this.app.get('/', (_req, res) => res.status(200).send('social media'));
+    this.app.use(ErrorMiddleware.handler);
   }
 
   private routes(): void {
