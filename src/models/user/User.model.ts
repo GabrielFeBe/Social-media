@@ -44,7 +44,7 @@ export default class UserModel implements IUserModel {
 
   async findById(id: number): Promise<IUser | null> {
     const response = await this.Model.findByPk(id, {
-      attributes: ['id', 'name', 'email'],
+      attributes: { exclude: ['password'] },
       include: [
         {
           model: User,

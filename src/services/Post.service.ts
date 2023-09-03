@@ -1,6 +1,7 @@
 import { IPostModel } from '../interface/Models';
 import IPostService from '../interface/IPostService';
 import Post from '../interface/Post';
+import Posts from '../class/Post';
 
 export default class PostService implements IPostService {
   private Model:IPostModel;
@@ -15,7 +16,8 @@ export default class PostService implements IPostService {
   }
 
   async createPost(post:Post): Promise<Post> {
-    const response = await this.Model.create(post);
+    const postClass = new Posts(post);
+    const response = await this.Model.create(postClass.getPost());
     return response;
   }
 

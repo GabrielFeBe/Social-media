@@ -45,7 +45,7 @@ export default class Posts {
     this.postDescription = obj.postDescription;
   }
 
-  getUser() {
+  getPost() {
     return {
       postTitle: this.postTitle,
       postPicture: this.postPicture,
