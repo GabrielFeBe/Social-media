@@ -9,7 +9,7 @@ export default class PostService implements IPostService {
   constructor(model:IPostModel) {
     this.Model = model;
   }
-
+ 
   async getPostId(id: number): Promise<Post | null> {
     const response = await this.Model.findById(id);
     return response;
@@ -28,6 +28,11 @@ export default class PostService implements IPostService {
 
   async getAllPosts(): Promise<Post[]> {
     const response = await this.Model.findAll();
+    return response;
+  }
+
+  async findPostByUserId(id: number): Promise<Post[]> {
+    const response = await this.Model.findPostByUserId(id);
     return response;
   }
 }

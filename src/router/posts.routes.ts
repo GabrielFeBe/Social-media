@@ -61,6 +61,8 @@ router.get('/', async (req:Request, res :Response) =>
 
 router.get('/:id', async (req:Request, res:Response) => controller.getPostId(req, res));
 
+router.get('/user/:id', async (req:Request, res:Response) => controller.findPostByUserId(req, res));
+
 router.delete('/:id', async (req:Request, res:Response) => controller.deletePostId(req, res));
 
 router.post('/', async (req:Request, res:Response) => controller.createPost(req, res));

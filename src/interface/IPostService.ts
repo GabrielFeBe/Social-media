@@ -6,5 +6,6 @@ export default interface IPostService{
   createPost(post:Post): Promise<Post>
   deletePostId(id:number): Promise<number>
   getAllPosts(): Promise<Post[]>
+  findPostByUserId(id:number):Promise<Post[]>
 
 }

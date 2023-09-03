@@ -6,6 +6,11 @@ export interface ICRUDModelReader<T>{
   findAll():Promise<T[]>
   findById(id:number):Promise<T | null>
 }
+export interface ICRUDModelPostReader<T>{
+  findAll():Promise<T[]>
+  findById(id:number):Promise<T | null>
+  findPostByUserId(id:number): Promise<T[]>
+}
 export interface ICRUDModelUserReader<T>{
   findAll():Promise<T[]>
   findById(id:number):Promise<T | null>

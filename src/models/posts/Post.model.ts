@@ -33,6 +33,13 @@ class PostModel implements IPostModel {
     const response = await this.Model.findByPk(id);
     return response;
   }
+
+  async findPostByUserId(id:number) :Promise<IPost[]> {
+    const response = await this.Model.findAll({ where: {
+      userId: id,
+    } });
+    return response;
+  }
 }
 
 export default PostModel;

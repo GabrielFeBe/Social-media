@@ -1,10 +1,11 @@
 import FriendRequest from './FriendRequest';
 import { ICRUDFriendsModel, ICRUDModelCreator, ICRUDModelDeleter, 
-  ICRUDModelReader, ICRUDModelUpdater, ICRUDModelUserReader } from './ICRUD';
+  ICRUDModelPostReader, 
+  ICRUDModelUpdater, ICRUDModelUserReader } from './ICRUD';
 import Post from './Post';
 import { IUser } from './Tuser';
 
-export type IPostModel = ICRUDModelCreator<Post> & ICRUDModelDeleter & ICRUDModelReader<Post>; 
+export type IPostModel = ICRUDModelCreator<Post> & ICRUDModelDeleter & ICRUDModelPostReader<Post>; 
 
 export type IUserModel = ICRUDModelCreator<IUser> & ICRUDModelDeleter & ICRUDModelUserReader<IUser>;
 

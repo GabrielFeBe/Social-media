@@ -30,4 +30,10 @@ export default class PostController implements IPostController {
     const response = await this.Service.getAllPosts();
     return res.status(200).json(response); 
   }
+
+  async findPostByUserId(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const response = await this.Service.findPostByUserId(+id);
+    return res.status(200).json(response); 
+  }
 }
