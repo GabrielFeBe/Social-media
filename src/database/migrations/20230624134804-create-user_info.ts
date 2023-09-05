@@ -34,6 +34,11 @@ export default {
         type: DataTypes.DATE,
         defaultValue: new Date(),
         field: 'post_date'
+      },
+      postPicture: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: 'post_picture'
       }
     });
   },

@@ -1,5 +1,7 @@
-import { CreationOptional, DataTypes, ForeignKey, 
-  InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import {
+  CreationOptional, DataTypes, ForeignKey,
+  InferAttributes, InferCreationAttributes, Model
+} from 'sequelize';
 import db from './index';
 import User from './User';
 
@@ -17,6 +19,8 @@ class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
   declare isPublic: boolean;
 
   declare postDate: Date;
+
+  declare postPicture: CreationOptional<string>;
 }
 
 Post.init({
@@ -49,7 +53,11 @@ Post.init({
     type: DataTypes.DATE,
     defaultValue: new Date(),
     field: 'post_date',
-  },
+  }, postPicture: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    field: 'post_picture'
+  }
 
 }, {
   sequelize,
