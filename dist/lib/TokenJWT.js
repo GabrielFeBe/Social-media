@@ -10,6 +10,7 @@ class TokenJwt {
         this.jwtSecret = process.env.JWT_SECRET || 'segurodms';
         this.jwtExpiration = process.env.JWT_EXPIRATION || (60 * 60 * 24 * 7);
     }
+    // tenho que colocar o JWT validator no programa e o ErrorMiddleware
     generate(user) {
         const token = this.JWT.sign({ id: user.id, email: user.email }, this.jwtSecret, { expiresIn: this.jwtExpiration });
         return token;

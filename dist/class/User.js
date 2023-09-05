@@ -4,7 +4,7 @@ const zod_1 = require("zod");
 class User {
     constructor(obj) {
         const result = User.schema.safeParse(obj);
-        console.log(result);
+        // console.log(result);
         // if (!result.success) {
         //   const issues = fromZodError(result.error);
         //   throw new Error(issues.message);
@@ -33,7 +33,7 @@ User.schema = zod_1.z.object({
     email: zod_1.z.string().email().min(5),
     password: zod_1.z.string().min(6),
     name: zod_1.z.string().min(6),
-    description: zod_1.z.string().min(200),
+    description: zod_1.z.string().min(20),
     profilePicture: zod_1.z.string(),
     local: zod_1.z.string(),
 });

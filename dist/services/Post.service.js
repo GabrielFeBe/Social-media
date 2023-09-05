@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const Post_1 = __importDefault(require("../class/Post"));
 class PostService {
     constructor(model) {
         this.Model = model;
@@ -21,7 +25,8 @@ class PostService {
     }
     createPost(post) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.create(post);
+            const postClass = new Post_1.default(post);
+            const response = yield this.Model.create(postClass.getPost());
             return response;
         });
     }
@@ -34,6 +39,12 @@ class PostService {
     getAllPosts() {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.Model.findAll();
+            return response;
+        });
+    }
+    findPostByUserId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.Model.findPostByUserId(id);
             return response;
         });
     }

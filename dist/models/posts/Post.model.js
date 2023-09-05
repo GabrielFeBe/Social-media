@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Post_1 = __importDefault(require("../../database/models/Post"));
+const PostsComments_1 = __importDefault(require("../../database/models/PostsComments"));
+const User_1 = __importDefault(require("../../database/models/User"));
 class PostModel {
     constructor() {
         this.Model = Post_1.default;
@@ -33,13 +35,30 @@ class PostModel {
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.Model.findAll();
+            const response = yield this.Model.findAll({
+                include: [{
+                        model: User_1.default,
+                        as: 'user',
+                        attributes: ['id', 'name', 'email', 'profilePicture'],
+                    }, {
+                        model: PostsComments_1.default,
+                        as: 'comments',
+                    }],
+            });
             return response;
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.Model.findByPk(id);
+            return response;
+        });
+    }
+    findPostByUserId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.Model.findAll({ where: {
+                    userId: id,
+                } });
             return response;
         });
     }

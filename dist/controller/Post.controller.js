@@ -39,6 +39,13 @@ class PostController {
             return res.status(200).json(response);
         });
     }
+    findPostByUserId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const response = yield this.Service.findPostByUserId(+id);
+            return res.status(200).json(response);
+        });
+    }
 }
 exports.default = PostController;
 //# sourceMappingURL=Post.controller.js.map

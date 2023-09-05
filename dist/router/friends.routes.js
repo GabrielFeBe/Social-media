@@ -18,44 +18,49 @@ const Friends_model_1 = __importDefault(require("../models/friends/Friends.model
 const Friends_service_1 = __importDefault(require("../services/Friends.service"));
 const model = new Friends_model_1.default();
 const service = new Friends_service_1.default(model);
-class FriendsRouter {
-    constructor() {
-        this.router = (0, express_1.Router)();
-        this.controller = new Friends_controller_1.default(service);
-        this.inicializatingRoutes();
-    }
-    getFriendsUserById() {
-        this.router.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.findFriendsUserById(req, res);
-        }));
-    }
-    findAllUserFriends() {
-        this.router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.findAllUserFriends(req, res);
-        }));
-    }
-    createFriendRequest() {
-        this.router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.createFriendRequest(req, res);
-        }));
-    }
-    deleteFriendRequest() {
-        this.router.delete('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.deleteFriendRequest(req, res);
-        }));
-    }
-    updateFriendRequest() {
-        this.router.patch('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.updateFriendRequest(req, res);
-        }));
-    }
-    inicializatingRoutes() {
-        this.findAllUserFriends();
-        this.deleteFriendRequest();
-        this.createFriendRequest();
-        this.getFriendsUserById();
-        this.updateFriendRequest();
-    }
-}
-exports.default = FriendsRouter;
+const router = (0, express_1.Router)();
+const controller = new Friends_controller_1.default(service);
+// class FriendsRouter {
+//   constructor() {
+//     this.inicializatingRoutes();
+//   }
+//   getFriendsUserById() {
+//     this.router.get('/:id', async (req:Request, res :Response) => {
+//       this.controller.findFriendsUserById(req, res);
+//     });
+//   }
+//   findAllUserFriends() {
+//     this.router.get('/', async (req:Request, res:Response) => {
+//       this.controller.findAllUserFriends(req, res);
+//     });
+//   }
+//   createFriendRequest() {
+//     this.router.post('/', async (req:Request, res:Response) => {
+//       this.controller.createFriendRequest(req, res);
+//     });
+//   }
+//   deleteFriendRequest() {
+//     this.router.delete('/:id', async (req:Request, res:Response) => {
+//       this.controller.deleteFriendRequest(req, res);
+//     });
+//   }
+//   updateFriendRequest() {
+//     this.router.patch('/:id', async (req:Request, res:Response) => {
+//       this.controller.updateFriendRequest(req, res);
+//     });
+//   }
+//   inicializatingRoutes() {
+//     this.findAllUserFriends();
+//     this.deleteFriendRequest();
+//     this.createFriendRequest();
+//     this.getFriendsUserById();
+//     this.updateFriendRequest();
+//   }
+// }
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.findAllUserFriends(req, res); }));
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.findFriendsUserById(req, res); }));
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.createFriendRequest(req, res); }));
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.deleteFriendRequest(req, res); }));
+router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.updateFriendRequest(req, res); }));
+exports.default = router;
 //# sourceMappingURL=friends.routes.js.map

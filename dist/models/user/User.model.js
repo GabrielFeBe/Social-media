@@ -61,14 +61,18 @@ class UserModel {
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.Model.findByPk(id, {
-                attributes: ['id', 'name', 'email'],
+                attributes: { exclude: ['password'] },
                 include: [
                     {
                         model: User_1.default,
                         as: 'requested',
                         attributes: ['id', 'name', 'email'],
                         through: {
-                            attributes: [],
+                            attributes: ['id'],
+                            where: {
+                                status: false,
+                            },
+                            as: 'friendRequest',
                         },
                     },
                 ],

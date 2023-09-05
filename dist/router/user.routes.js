@@ -18,54 +18,17 @@ const EcrypteCryptor_1 = __importDefault(require("../lib/EcrypteCryptor"));
 const TokenJWT_1 = __importDefault(require("../lib/TokenJWT"));
 const User_model_1 = __importDefault(require("../models/user/User.model"));
 const User_service_1 = __importDefault(require("../services/User.service"));
+const router = (0, express_1.Router)();
 const model = new User_model_1.default();
 const encrypter = new EcrypteCryptor_1.default();
 const tokenGenerator = new TokenJWT_1.default();
 const service = new User_service_1.default(model, encrypter, tokenGenerator);
-class UserRouter {
-    constructor() {
-        this.router = (0, express_1.Router)();
-        this.controller = new User_controller_1.default(service);
-        this.inicializatingRoutes();
-    }
-    getUser() {
-        this.router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.getAllUser(req, res);
-        }));
-    }
-    getAllUserByName() {
-        this.router.get('/names', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.getAllUserByName(req, res);
-        }));
-    }
-    getUserId() {
-        this.router.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.getUserId(req, res);
-        }));
-    }
-    deleteUserId() {
-        this.router.delete('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.deleteUserId(req, res);
-        }));
-    }
-    createUser() {
-        this.router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.createUser(req, res);
-        }));
-    }
-    loginUser() {
-        this.router.post('/login', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.loginUser(req, res);
-        }));
-    }
-    inicializatingRoutes() {
-        this.getAllUserByName();
-        this.createUser();
-        this.deleteUserId();
-        this.getUserId();
-        this.getUser();
-        this.loginUser();
-    }
-}
-exports.default = UserRouter;
+const controller = new User_controller_1.default(service);
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.getAllUser(req, res); }));
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.createUser(req, res); }));
+router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.loginUser(req, res); }));
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.deleteUserId(req, res); }));
+router.get('/names', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.getAllUserByName(req, res); }));
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.getUserId(req, res); }));
+exports.default = router;
 //# sourceMappingURL=user.routes.js.map

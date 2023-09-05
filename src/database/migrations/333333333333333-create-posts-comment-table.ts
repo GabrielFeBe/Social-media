@@ -5,30 +5,29 @@ export default {
   up(queryInterface: QueryInterface) {
     return queryInterface.createTable<Model<PostComments>>('post_comments', {
       id: {
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
+        allowNull: false
       },
       postId: {
-        allowNull: false,
-        type: DataTypes.NUMBER,
-        field: 'post_id'
+        type: DataTypes.INTEGER,
+        field: 'post_id',
+        allowNull: false
       },
       comment: {
         type: DataTypes.TEXT,
         allowNull: false
       },
       userId: {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-        field: 'user_id'
+        type: DataTypes.INTEGER,
+        field: 'user_id',
+        allowNull: false
       },
       commentDate: {
         type: DataTypes.DATE,
-        allowNull: true,
         field: 'comment_date',
-        defaultValue: new Date()
+        defaultValue: DataTypes.NOW
       }
     });
   },

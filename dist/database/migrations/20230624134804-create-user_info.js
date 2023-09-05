@@ -34,6 +34,11 @@ exports.default = {
                 type: sequelize_1.DataTypes.DATE,
                 defaultValue: new Date(),
                 field: 'post_date'
+            },
+            postPicture: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true,
+                field: 'post_picture'
             }
         });
     },

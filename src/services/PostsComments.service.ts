@@ -16,6 +16,7 @@ class PostsCommentsService implements IPostsCommentsService {
 
   async create(comment: IPostsComments): Promise<IPostsComments> {
     const response = await this.Model.create(comment);
+    console.log(comment);
     return response;
   }
 

@@ -27,10 +27,11 @@ class FriendsModel {
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.FModel.destroy({ where: {
-                    id,
-                } });
-            return response;
+            const request = yield this.FModel.findByPk(id);
+            if (!request)
+                throw new Error('user not found');
+            yield request.destroy();
+            return 1;
         });
     }
     // eslint-disable-next-line
@@ -44,10 +45,8 @@ class FriendsModel {
                         as: 'requester',
                         attributes: ['id', 'name', 'email', 'profilePicture'],
                         through: {
-                            attributes: [],
-                            where: {
-                                status: true,
-                            },
+                            attributes: ['status'],
+                            where: {},
                         },
                     },
                     {
@@ -55,10 +54,7 @@ class FriendsModel {
                         as: 'requested',
                         attributes: ['id', 'name', 'email', 'profilePicture'],
                         through: {
-                            attributes: [],
-                            where: {
-                                status: true,
-                            },
+                            attributes: ['status'],
                         },
                     },
                 ],
@@ -80,7 +76,7 @@ class FriendsModel {
     findFriendsUserById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.UModel.findByPk(id, {
-                attributes: ['id', 'name', 'email'],
+                attributes: ['id', 'name', 'email', 'profilePicture', 'local', 'description'],
                 include: [
                     {
                         model: User_1.default,

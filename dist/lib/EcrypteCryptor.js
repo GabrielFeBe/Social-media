@@ -25,11 +25,9 @@ class EncrypterCrypto {
     }
     compare(password, encryptedP) {
         const binaryData = Buffer.from(encryptedP, this.encoding);
-        console.log(encryptedP);
         const iv = binaryData.slice(-this.ivLength);
         const encryptedData = binaryData.slice(0, binaryData.length - this.ivLength);
         const decipher = crypto_1.default.createDecipheriv(this.algorithm, Buffer.from(this.key), iv);
-        console.log(decipher);
         const decoded = Buffer.concat([decipher.update(encryptedData), decipher.final()]).toString();
         return decoded === password;
     }

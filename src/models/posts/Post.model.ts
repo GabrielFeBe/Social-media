@@ -1,4 +1,5 @@
 import Post from '../../database/models/Post';
+import PostsComments from '../../database/models/PostsComments';
 import User from '../../database/models/User';
 import { IPostModel } from '../../interface/Models';
 import IPost from '../../interface/Post';
@@ -24,6 +25,16 @@ class PostModel implements IPostModel {
         model: User,
         as: 'user',
         attributes: ['id', 'name', 'email', 'profilePicture'],
+      }, {
+        model: PostsComments,
+        as: 'comments',
+        include: [
+          {
+            model: User,
+            as: 'user',
+          },
+        ],
+
       }],
     });
     return response;

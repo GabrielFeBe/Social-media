@@ -18,42 +18,51 @@ const Post_controller_1 = __importDefault(require("../controller/Post.controller
 // import User from '../database/models/User';
 const Post_model_1 = __importDefault(require("../models/posts/Post.model"));
 const Post_service_1 = __importDefault(require("../services/Post.service"));
+const router = (0, express_1.Router)();
 const model = new Post_model_1.default();
 const service = new Post_service_1.default(model);
-class PostRouter {
-    constructor() {
-        this.router = (0, express_1.Router)();
-        this.controller = new Post_controller_1.default(service);
-        this.inicializatingRoutes();
-    }
-    getPosts() {
-        this.router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            // const response = await Post.findAll({ include: [{ model: User, as: 'user' }] });
-            // res.status(200).json(response);
-            this.controller.getAllPosts(req, res);
-        }));
-    }
-    getPostId() {
-        this.router.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.getPostId(req, res);
-        }));
-    }
-    deletePostId() {
-        this.router.delete('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.deletePostId(req, res);
-        }));
-    }
-    createPost() {
-        this.router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            this.controller.createPost(req, res);
-        }));
-    }
-    inicializatingRoutes() {
-        this.createPost();
-        this.deletePostId();
-        this.getPostId();
-        this.getPosts();
-    }
-}
-exports.default = PostRouter;
+const controller = new Post_controller_1.default(service);
+// class PostRouter {
+//   router = Router();
+//   constructor() {
+//     this.inicializatingRoutes();
+//   }
+//   getPosts() {
+//     this.router.get('/', async (req:Request, res :Response) => {
+//       // const response = await Post.findAll({ include: [{ model: User, as: 'user' }] });
+//       // res.status(200).json(response);
+//       this.controller.getAllPosts(req, res);
+//     });
+//   }
+//   getPostId() {
+//     this.router.get('/:id', async (req:Request, res:Response) => {
+//       this.controller.getPostId(req, res);
+//     });
+//   }
+//   deletePostId() {
+//     this.router.delete('/:id', async (req:Request, res:Response) => {
+//       this.controller.deletePostId(req, res);
+//     });
+//   }
+//   createPost() {
+//     this.router.post('/', async (req:Request, res:Response) => {
+//       this.controller.createPost(req, res);
+//     });
+//   }
+//   inicializatingRoutes() {
+//     this.createPost();
+//     this.deletePostId();
+//     this.getPostId();
+//     this.getPosts();
+//   }
+// }
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () { 
+// const response = await Post.findAll({ include: [{ model: User, as: 'user' }] });
+// res.status(200).json(response);
+return controller.getAllPosts(req, res); }));
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.getPostId(req, res); }));
+router.get('/user/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.findPostByUserId(req, res); }));
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.deletePostId(req, res); }));
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return controller.createPost(req, res); }));
+exports.default = router;
 //# sourceMappingURL=posts.routes.js.map

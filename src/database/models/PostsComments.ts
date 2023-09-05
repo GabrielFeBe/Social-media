@@ -57,7 +57,7 @@ PostsComments.init({
 });
 
 PostsComments.belongsTo(User, { foreignKey: { allowNull: false, name: 'userId' }, as: 'user' });
-User.hasMany(PostsComments, { foreignKey: 'userId', as: 'posts' });
+User.hasMany(PostsComments, { foreignKey: 'userId', as: 'postsComments' });
 Post.hasMany(PostsComments, { foreignKey: 'postId', as: 'comments' })
 
 export default PostsComments;
