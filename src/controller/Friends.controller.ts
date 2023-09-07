@@ -33,7 +33,8 @@ export default class FriendsController implements IFriendsController {
 
   async updateFriendRequest(req: Request, res: Response): Promise<Response > {
     const { id } = req.params;
-    const response = await this.Service.updateFriendRequest(+id, req.body);
+    const { userId } = req.body;
+    const response = await this.Service.updateFriendRequest(+id, req.body, +userId);
     return res.status(200).json(response);
   }
 }

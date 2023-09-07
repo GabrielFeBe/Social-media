@@ -30,8 +30,13 @@ export default class FriendsService implements IFriendsService {
     return response;
   }
 
-  async updateFriendRequest(id: number, data: { status:boolean })
+  async updateFriendRequest(id: number, data: { status:boolean }, userId:number)
     : Promise<IFriendRequest | null> {
+    const checkingValidation = await this.Model.findById(id);
+    if (!checkingValidation) throw new Error('Request does not exist');
+    if (checkingValidation.requesterId !== userId && checkingValidation.targetId !== userId) { 
+      throw new Error('You are not authorized to update this request'); 
+    }
     const response = await this.Model.update(id, data);
     return response;
   }

@@ -1,6 +1,7 @@
 import FriendRequest from './FriendRequest';
 import { ICRUDFriendsModel, ICRUDModelCommentsReader, ICRUDModelCreator, ICRUDModelDeleter, 
   ICRUDModelPostReader,  
+  ICRUDModelReader,  
   ICRUDModelUpdater, ICRUDModelUserReader } from './ICRUD';
 import Post from './Post';
 import PostComments from './PostsComments';
@@ -11,7 +12,9 @@ export type IPostModel = ICRUDModelCreator<Post> & ICRUDModelDeleter & ICRUDMode
 export type IUserModel = ICRUDModelCreator<IUser> & ICRUDModelDeleter & ICRUDModelUserReader<IUser>;
 
 export type IFriendsModel = ICRUDModelCreator<FriendRequest> 
-& ICRUDModelDeleter & ICRUDFriendsModel<IUser> & ICRUDModelUpdater<FriendRequest>;
+& ICRUDModelDeleter & ICRUDFriendsModel<IUser> & ICRUDModelUpdater<FriendRequest> 
+& Omit<ICRUDModelReader<FriendRequest>, 'findAll'>;
 
 export type IPostCommentsModel = ICRUDModelCreator<PostComments> & ICRUDModelUpdater<PostComments> 
-& ICRUDModelCommentsReader<PostComments> & ICRUDModelDeleter;
+& ICRUDModelCommentsReader<PostComments> & ICRUDModelDeleter 
+& Omit<ICRUDModelReader<PostComments>, 'findAll'>;

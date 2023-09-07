@@ -111,4 +111,9 @@ export default class FriendsModel implements IFriendsModel {
     } 
     return null; 
   }
+
+  async findById(id: number): Promise<IFriendRequest | null> {
+    const response = await this.FModel.findByPk(id);
+    return response;
+  }
 }

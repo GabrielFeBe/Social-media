@@ -20,7 +20,10 @@ class PostsCommentsService implements IPostsCommentsService {
     return response;
   }
 
-  async delete(id: number): Promise<number> {
+  async delete(id: number, userId:number): Promise<number> {
+    const checkingUser = await this.Model.findById(id);
+    if (!checkingUser) throw new Error('Comment does not exist');
+    if (checkingUser.userId !== userId) throw new Error('User can not delete this comment');
     const response = await this.Model.delete(id);
     return response;
   }

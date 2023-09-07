@@ -35,6 +35,11 @@ class PostsComments implements IPostCommentsModel {
     } });
     return response;
   }
+
+  async findById(id:number) {
+    const response = await this.Model.findByPk(id);
+    return response;
+  }
 }
 
 export default PostsComments;

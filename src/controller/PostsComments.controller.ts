@@ -22,7 +22,8 @@ class PostsCommentsController implements IPostsCommentsController {
 
   async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const response = await this.Service.delete(+id);
+    const { userId } = req.body;
+    const response = await this.Service.delete(+id, +userId);
     return res.status(204).json(response);
   }
 
