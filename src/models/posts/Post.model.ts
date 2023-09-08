@@ -18,7 +18,7 @@ class PostModel implements IPostModel {
     } });
     return id;
   }
-
+  // eslint-disable-next-line
   async findAll(): Promise<IPost[]> {
     const response = await this.Model.findAll({
       include: [{
@@ -28,6 +28,10 @@ class PostModel implements IPostModel {
       }, {
         model: PostsComments,
         as: 'comments',
+        separate: true,
+        order: [
+          ['commentDate', 'ASC'],
+        ],
         include: [
           {
             model: User,
