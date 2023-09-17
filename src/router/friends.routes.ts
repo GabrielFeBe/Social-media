@@ -11,51 +11,6 @@ const router = Router();
 
 const controller = new FriendsController(service);
 
-// class FriendsRouter {
-
-//   constructor() {
-//     this.inicializatingRoutes();
-//   }
-
-//   getFriendsUserById() {
-//     this.router.get('/:id', async (req:Request, res :Response) => {
-//       this.controller.findFriendsUserById(req, res);
-//     });
-//   }
-
-//   findAllUserFriends() {
-//     this.router.get('/', async (req:Request, res:Response) => {
-//       this.controller.findAllUserFriends(req, res);
-//     });
-//   }
-
-//   createFriendRequest() {
-//     this.router.post('/', async (req:Request, res:Response) => {
-//       this.controller.createFriendRequest(req, res);
-//     });
-//   }
-
-//   deleteFriendRequest() {
-//     this.router.delete('/:id', async (req:Request, res:Response) => {
-//       this.controller.deleteFriendRequest(req, res);
-//     });
-//   }
-
-//   updateFriendRequest() {
-//     this.router.patch('/:id', async (req:Request, res:Response) => {
-//       this.controller.updateFriendRequest(req, res);
-//     });
-//   }
- 
-//   inicializatingRoutes() {
-//     this.findAllUserFriends();
-//     this.deleteFriendRequest();
-//     this.createFriendRequest();
-//     this.getFriendsUserById();
-//     this.updateFriendRequest();
-//   }
-// }
-
 router.get('/', async (req:Request, res:Response) => controller.findAllUserFriends(req, res));
 
 router.get('/:id', async (req:Request, res :Response) => controller.findFriendsUserById(req, res));

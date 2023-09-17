@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import IFriendsController from '../interface/IFriendsController';
 import IFriendsService from '../interface/IFriendsService';
+import { getIo } from '../lib/SocketUtils';
 
 export default class FriendsController implements IFriendsController {
   private Service:IFriendsService;
@@ -17,6 +18,8 @@ export default class FriendsController implements IFriendsController {
 
   async createFriendRequest(req: Request, res: Response): Promise<Response > {
     const response = await this.Service.createFriendRequest(req.body);
+    const io = getIo();
+    io.emit('friendRequest', { message: 'teste' });
     return res.status(201).json(response);
   }
 
