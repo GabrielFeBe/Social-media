@@ -19,7 +19,7 @@ export default class FriendsController implements IFriendsController {
   async createFriendRequest(req: Request, res: Response): Promise<Response > {
     const response = await this.Service.createFriendRequest(req.body);
     const io = getIo();
-    io.emit('friendRequest', { message: 'teste' });
+    io.emit('friendRequest', { targetId: req.body.targetId });
     return res.status(201).json(response);
   }
 
