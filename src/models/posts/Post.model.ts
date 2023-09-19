@@ -48,11 +48,32 @@ class PostModel implements IPostModel {
     const response = await this.Model.findByPk(id);
     return response;
   }
-
+  // eslint-disable-next-line
   async findPostByUserId(id:number) :Promise<IPost[]> {
     const response = await this.Model.findAll({ where: {
       userId: id,
-    } });
+    },
+    include: [{
+      model: User,
+      as: 'user',
+      attributes: ['id', 'name', 'email', 'profilePicture'],
+    }, {
+      model: PostsComments,
+      as: 'comments',
+      separate: true,
+      order: [
+        ['commentDate', 'ASC'],
+      ],
+      include: [
+        {
+          model: User,
+          as: 'user',
+        },
+      ],
+
+    }],
+  
+    });
     return response;
   }
 }
