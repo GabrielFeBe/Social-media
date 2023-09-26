@@ -70,10 +70,8 @@ export default class FriendsModel implements IFriendsModel {
           as: 'requester',
           attributes: ['id', 'name', 'email', 'profilePicture'],
           through: {
-            attributes: [],
-            where: {
-              status: true,
-            },
+            attributes: ['status'],
+            
           },
         },
         {
@@ -81,10 +79,7 @@ export default class FriendsModel implements IFriendsModel {
           as: 'requested',
           attributes: ['id', 'name', 'email', 'profilePicture'],
           through: {
-            attributes: [],
-            where: {
-              status: true,
-            },
+            attributes: ['status'],
           },
         },
       ],
@@ -97,6 +92,8 @@ export default class FriendsModel implements IFriendsModel {
       local: response.local,
       name: response.name,
       friends: [...response.requested || [], ...response.requester || []],
+      requester: response.requester,
+      requested: response.requested,
       password: response.password,
       description: response.description,
     };
