@@ -97,7 +97,9 @@ Your application should now be up and running.
 <details>
 <summary><strong>Friends Endpoints</strong></summary>
 
-### `Endpoint /friends/:id`
+### All endpoints are accessed only by authenticated users.
+
+#### `Endpoint /friends/:id`
 
 - Endpoint to find friends of a user by the user's ID.
 - Request method: GET
@@ -105,7 +107,7 @@ Your application should now be up and running.
   - `id` (from request parameters) - User ID
 - Returns a JSON response with the found friends.
 
-### `Endpoint /friends/:id`
+#### `Endpoint /friends/:id`
 
 - Endpoint to create a new friend request.
 - Request method: POST
@@ -113,7 +115,7 @@ Your application should now be up and running.
 - Emits a socket event 'friendRequest' using `SocketUtils` to notify other users.
 - Returns a JSON response with the created friend request.
 
-### `Endpoint /friends/:id`
+#### `Endpoint /friends/:id`
 
 - This is basically to decline a friend request.
 - Endpoint to delete a friend request by its ID.
@@ -122,22 +124,156 @@ Your application should now be up and running.
   - `id` (from request parameters) - Friend Request ID
 - Returns a JSON response with a 204 status code indicating success.
 
-### `Endpoint /friends`
+#### `Endpoint /friends`
 
 - Theres no need to pass any parameters, because the user is already logged in so it's retrieving the user's ID from the JWT token.
 - Endpoint to fetch all friends of a user.
 - Request method: GET
 - Returns a JSON response with the user's friends.
 
-### `Endpoint /friends/:id`
+#### `Endpoint /friends/:id`
 
 - This is basically to accept a friend request.
 - Endpoint to update an existing friend request by its ID.
-- Request method: PUT
+- Request method: PATCH
 - Parameters:
   - `id` (from request parameters) - Friend Request ID
 - Request body should contain the necessary information to update the friend request.
 - Returns a JSON response with the updated friend request.
+
+</details>
+
+<details>
+<summary><strong>Post Endpoints</strong></summary>
+
+### All endpoints are accessed only by authenticated users.
+
+#### `Endpoint /posts/:id`
+
+- Endpoint to get a post by its ID.
+- Request method: GET
+- Parameters:
+  - `id` (from request parameters) - Post ID
+- Returns a JSON response with the post details.
+
+#### `Endpoint /posts`
+
+- Endpoint to create a new post.
+- Request method: POST
+- Request body should contain the necessary information to create the post.
+- Returns a JSON response with the created post.
+
+#### `Endpoint /posts/:id`
+
+- Endpoint to delete a post by its ID.
+- Request method: DELETE
+- Parameters:
+  - `id` (from request parameters) - Post ID
+- Returns a JSON response with a 204 status code indicating success.
+
+#### `Endpoint /posts`
+
+- Endpoint to fetch all posts.
+- Request method: GET
+- Returns a JSON response with all posts.
+
+#### `Endpoint /posts/user/:id`
+
+- Endpoint to find posts by a specific user's ID.
+- Request method: GET
+- Parameters:
+  - `id` (from request parameters) - User ID
+- Returns a JSON response with posts by the user.
+</details>
+
+<details>
+<summary><strong>Users endpoint</strong></summary>
+
+### Most of those endpoints are not in use, so therefore they don't need authentication.
+
+#### `Endpoint /users/:id`
+
+- Endpoint to get a user by by the user's ID.
+- Request method: GET
+- Parameters:
+  - `id` (from request parameters) - User ID
+- Returns a JSON response with the user details.
+
+#### `Endpoint /users`
+
+- Endpoint to create a new user.
+- Request method: POST
+- Request body should contain the necessary information to create the user.
+- Returns a JSON response with the created user.
+
+#### `Endpoint /users/:id`
+
+- Endpoint to delete a user by their ID.
+- Request method: DELETE
+- Parameters:
+  - `id` (from request parameters) - User ID
+- Returns a JSON response with a 204 status code indicating success.
+
+#### `Endpoint /users`
+
+- Endpoint to fetch all users.
+- Request method: GET
+- Returns a JSON response with all users.
+
+#### `Endpoint /users/names`
+
+- Endpoint to search for users by name.
+- Request method: POST
+- Request body should contain the user's name to search for.
+- Returns a JSON response with users matching the provided name.
+
+#### `Endpoint /users/login`
+
+- Endpoint to log in a user.
+- Request method: POST
+- Request body should contain the user's email and password for authentication.
+- Returns a JSON response with an authentication token.
+
+</details>
+
+<details>
+<summary><strong>Posts Comments Endpoints</strong></summary>
+
+### Most of those endpoints are not in use, so therefore they don't need authentication.
+
+#### `Endpoint /comments/:id`
+
+- Endpoint to update a comment by its ID.
+- Request method: PATCH
+- Parameters:
+  - `id` (from request parameters) - Comment ID
+- Request body should contain the necessary information to update the comment.
+- Returns a JSON response with the updated comment.
+
+#### `Endpoint /comments`
+
+- Endpoint to create a new comment.
+- Request method: POST
+- Request body should contain the necessary information to create the comment.
+- Returns a JSON response with the created comment.
+
+#### `Endpoint /comments/:id`
+
+- Endpoint to delete a comment by its ID.
+- Request method: DELETE
+- Parameters:
+  - `id` (from request parameters) - Comment ID
+  - `userId` (from request body) - User ID for authorization
+- Returns a JSON response with a 204 status code indicating success.
+
+#### `Endpoint /comments/:id`
+
+- Endpoint to find comments by a specific post's ID.
+- Request method: GET
+- Parameters:
+  - `id` (from request parameters) - Post ID
+- Returns a JSON response with comments associated with the specified post.
+
 </details>
 
 ## Model Subdomain

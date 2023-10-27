@@ -13,47 +13,6 @@ const service = new PostService(model);
 
 const controller = new PostController(service);
 
-// class PostRouter {
-//   router = Router();
-
-//   constructor() {
-//     this.inicializatingRoutes();
-//   }
-
-//   getPosts() {
-//     this.router.get('/', async (req:Request, res :Response) => {
-//       // const response = await Post.findAll({ include: [{ model: User, as: 'user' }] });
-//       // res.status(200).json(response);
-//       this.controller.getAllPosts(req, res);
-//     });
-//   }
-
-//   getPostId() {
-//     this.router.get('/:id', async (req:Request, res:Response) => {
-//       this.controller.getPostId(req, res);
-//     });
-//   }
-
-//   deletePostId() {
-//     this.router.delete('/:id', async (req:Request, res:Response) => {
-//       this.controller.deletePostId(req, res);
-//     });
-//   }
-
-//   createPost() {
-//     this.router.post('/', async (req:Request, res:Response) => {
-//       this.controller.createPost(req, res);
-//     });
-//   }
-
-//   inicializatingRoutes() {
-//     this.createPost();
-//     this.deletePostId();
-//     this.getPostId();
-//     this.getPosts();
-//   }
-// }
-
 router.get('/', async (req:Request, res :Response) => 
   // const response = await Post.findAll({ include: [{ model: User, as: 'user' }] });
   // res.status(200).json(response);
