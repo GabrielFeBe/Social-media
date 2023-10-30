@@ -27,7 +27,6 @@ export default class User {
 
   constructor(obj:IUser) {
     const result = User.schema.safeParse(obj);
-    console.log(result);
     if (!result.success) {
       const issues = fromZodError(result.error);
       throw new Error(issues.message);

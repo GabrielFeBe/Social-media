@@ -49,7 +49,7 @@ export default class UserModel implements IUserModel {
         {
           model: User,
           as: 'requested',
-          attributes: ['id', 'name', 'email'],
+          attributes: ['id', 'name', 'email', 'profilePicture'],
           through: {
             attributes: ['id'], 
             where: {

@@ -1,12 +1,3 @@
-// export default interface Post {
-//   id?:number;
-//   postTitle:string;
-//   postDescription:string;
-//   postDate?:Date;
-//   isPublic:boolean;
-//   userId:number;
-// }
-
 import { z } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import Post from '../interface/Post';
