@@ -21,6 +21,7 @@ class PostModel implements IPostModel {
   // eslint-disable-next-line
   async findAll(): Promise<IPost[]> {
     const response = await this.Model.findAll({
+      order: [['postDate', 'DESC']],
       include: [{
         model: User,
         as: 'user',
