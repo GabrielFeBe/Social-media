@@ -1,6 +1,10 @@
 export interface ICRUDModelCreator<T>{
   create(data:Omit<T, 'id'>) :Promise<T>
 }
+export interface ICRUDModelCreatorUser<T>{
+  create(data:Omit<T, 'id'>) :Promise<T>
+  createUserNotification(id:number) :Promise<boolean>
+}
 
 export interface ICRUDModelReader<T>{
   findAll():Promise<T[]>

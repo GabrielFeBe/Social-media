@@ -29,4 +29,7 @@ router.get('/names', async (req:Request, res:Response) => controller.getAllUserB
 
 router.get('/:id', async (req:Request, res:Response) => controller.getUserId(req, res));
 
+router.post('/notifications', async (req:Request, res:Response) => 
+  controller.createUserNotification(req, res));
+
 export default router;

@@ -59,4 +59,10 @@ export default class UserService implements IUserService {
     id: response.id as number });
     return token;
   }
+
+  async createUserNotification(userId: number): Promise<boolean> {
+    const response = await this.Model.createUserNotification(userId);
+    if (!response) throw new Error('Erro ao criar notificação');
+    return response;
+  }
 }

@@ -24,7 +24,6 @@ export default class Posts {
 
   constructor(obj:Post) {
     const result = Posts.schema.safeParse(obj);
-    console.log(result);
     if (!result.success) {
       const issues = fromZodError(result.error);
       throw new Error(issues.message);

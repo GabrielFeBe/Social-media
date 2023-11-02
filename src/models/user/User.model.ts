@@ -2,9 +2,12 @@ import { Op } from 'sequelize';
 import User from '../../database/models/User';
 import { IUserModel } from '../../interface/Models';
 import { IUser } from '../../interface/Tuser';
+import UserNotification from '../../database/models/User.Notification';
 
 export default class UserModel implements IUserModel {
   private Model = User;
+
+  private NotificationModel = UserNotification;
 
   async create(data: Omit<IUser, 'id'>): Promise<IUser> {
     const response = this.Model.create(data);
@@ -41,7 +44,7 @@ export default class UserModel implements IUserModel {
     });
     return response;
   }
-
+  // eslint-disable-next-line
   async findById(id: number): Promise<IUser | null> {
     const response = await this.Model.findByPk(id, {
       attributes: { exclude: ['password'] },
@@ -57,6 +60,10 @@ export default class UserModel implements IUserModel {
             },
             as: 'friendRequest',
           },
+        },
+        {
+          model: UserNotification,
+          as: 'notifications',
         },
       ],
     });
@@ -81,5 +88,10 @@ export default class UserModel implements IUserModel {
       email,
     } });
     return response;
+  }
+
+  async createUserNotification(id: number): Promise<boolean> {
+    await this.NotificationModel.create({ userId: id });
+    return true;
   }
 }
