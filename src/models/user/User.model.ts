@@ -94,4 +94,11 @@ export default class UserModel implements IUserModel {
     await this.NotificationModel.create({ userId: id });
     return true;
   }
+
+  async deleteUserNotification(id: number): Promise<number> {
+    const response = await this.NotificationModel.destroy({ where: {
+      userId: id,
+    } });
+    return response;
+  }
 }

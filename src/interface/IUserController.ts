@@ -8,4 +8,5 @@ export default interface IUserController {
   getAllUserByName(req:Request, res:Response): Promise<Response>
   loginUser(req:Request, res:Response): Promise<Response>
   createUserNotification(req:Request, res:Response): Promise<Response>
+  deleteUserNotification(req:Request, res:Response): Promise<Response>
 }

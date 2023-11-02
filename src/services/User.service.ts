@@ -65,4 +65,10 @@ export default class UserService implements IUserService {
     if (!response) throw new Error('Erro ao criar notificação');
     return response;
   }
+
+  async deleteUserNotification(userId: number): Promise<number> {
+    const response = await this.Model.deleteUserNotification(userId);
+    if (!response) throw new Error('Erro ao deletar notificação');
+    return response;
+  }
 }

@@ -32,4 +32,7 @@ router.get('/:id', async (req:Request, res:Response) => controller.getUserId(req
 router.post('/notifications', async (req:Request, res:Response) => 
   controller.createUserNotification(req, res));
 
+router.delete('/notifications/:id', async (req:Request, res:Response) => 
+  controller.deleteUserNotification(req, res));
+
 export default router;

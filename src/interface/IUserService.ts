@@ -8,4 +8,5 @@ export default interface IUserService{
   getAllUserByName(name:string):Promise<IUser[]>
   loginUser(email:string, password:string):Promise<string>
   createUserNotification(userId:number):Promise<boolean>
+  deleteUserNotification(userId:number):Promise<number>
 }

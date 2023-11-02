@@ -48,4 +48,10 @@ export default class UserController implements IUserController {
     await this.Service.createUserNotification(id);
     return res.status(200).json({ message: 'notification created sucessfully' });
   }
+
+  async deleteUserNotification(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    await this.Service.deleteUserNotification(+id);
+    return res.status(204).send();
+  }
 }

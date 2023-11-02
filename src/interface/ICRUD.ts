@@ -34,6 +34,11 @@ export interface ICRUDModelUpdater<T>{
   update(id:number, data: Partial<T>):Promise <T | null>
 }
 
+export interface ICRUDModelDeleterUser{
+  delete(id:number):Promise<number>
+  deleteUserNotification(id:number):Promise<number>
+}
+
 export interface ICRUDModelDeleter{
   delete(id:number):Promise<number>
 }

@@ -2,7 +2,10 @@ import FriendRequest from './FriendRequest';
 import { ICRUDFriendsModel, ICRUDModelCommentsReader, ICRUDModelCreator, ICRUDModelDeleter, 
   ICRUDModelPostReader,  
   ICRUDModelReader,  
-  ICRUDModelUpdater, ICRUDModelUserReader, ICRUDModelCreatorUser } from './ICRUD';
+  ICRUDModelUpdater,
+  ICRUDModelUserReader,
+  ICRUDModelCreatorUser,
+  ICRUDModelDeleterUser } from './ICRUD';
 import Post from './Post';
 import PostComments from './PostsComments';
 import { IUser } from './Tuser';
@@ -10,7 +13,7 @@ import { IUser } from './Tuser';
 export type IPostModel = ICRUDModelCreator<Post> & ICRUDModelDeleter & ICRUDModelPostReader<Post>; 
 
 export type IUserModel = ICRUDModelCreatorUser<IUser> & 
-ICRUDModelDeleter & ICRUDModelUserReader<IUser>;
+ICRUDModelDeleterUser & ICRUDModelUserReader<IUser>;
 
 export type IFriendsModel = ICRUDModelCreator<FriendRequest> 
 & ICRUDModelDeleter & ICRUDFriendsModel<IUser> & ICRUDModelUpdater<FriendRequest> 
