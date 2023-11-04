@@ -9,6 +9,7 @@ import { ICRUDFriendsModel, ICRUDModelCommentsReader, ICRUDModelCreator, ICRUDMo
 import Post from './Post';
 import PostComments from './PostsComments';
 import { IUser } from './Tuser';
+import PostL from './post/ILikePosts';
 
 export type IPostModel = ICRUDModelCreator<Post> & ICRUDModelDeleter & ICRUDModelPostReader<Post>; 
 
@@ -22,3 +23,5 @@ export type IFriendsModel = ICRUDModelCreator<FriendRequest>
 export type IPostCommentsModel = ICRUDModelCreator<PostComments> & ICRUDModelUpdater<PostComments> 
 & ICRUDModelCommentsReader<PostComments> & ICRUDModelDeleter 
 & Omit<ICRUDModelReader<PostComments>, 'findAll'>;
+
+export type IPostLikeModel = ICRUDModelCreator<PostL> & ICRUDModelDeleter;
