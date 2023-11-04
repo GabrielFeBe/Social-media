@@ -16,8 +16,8 @@ export default class PostService implements IPostService {
   }
 
   async createPost(post:Post): Promise<Post> {
-    const postClass = new Posts(post);
-    const response = await this.Model.create(postClass.getPost());
+    await Posts.validate(post);
+    const response = await this.Model.create(post);
     return response;
   }
 

@@ -24,9 +24,11 @@ export default class UserService implements IUserService {
   }
 
   async createUser(user: IUser): Promise<IUser> {
+    const checkingEmail = await this.Model.findUserByEmail(user.email);
+    if (checkingEmail) throw new Error('Email already exists');
+    await User.validate(user);
     const encrypted = this.EncrypterC.encrypt(user.password);
-    const userClas = new User({ ...user, password: encrypted });
-    const response = await this.Model.create(userClas.getUser());
+    const response = await this.Model.create({ ...user, password: encrypted });
     const token = this.TokenGenerator.generate({ email:
       response.email,
     password: response.password,

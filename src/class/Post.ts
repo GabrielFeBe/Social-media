@@ -1,15 +1,14 @@
-import { z } from 'zod';
-import { fromZodError } from 'zod-validation-error';
+import { object, string, number, boolean, ValidationError } from 'yup';
 import Post from '../interface/Post';
 
 export default class Posts {
-  static schema = z.object({
-    id: z.number().optional(),
-    postTitle: z.string().min(6),
-    postDescription: z.string().min(20),
-    isPublic: z.boolean(),
-    userId: z.number(),
-    postPicture: z.string().optional(),
+  static schema = object({
+    id: number().optional(),
+    postTitle: string().required().min(5),
+    postDescription: string().required().min(5),
+    isPublic: boolean().required(),
+    userId: number().required(),
+    postPicture: string().optional(),
   });
 
   private postTitle:string;
@@ -23,16 +22,24 @@ export default class Posts {
   private postPicture:string | undefined;
 
   constructor(obj:Post) {
-    const result = Posts.schema.safeParse(obj);
-    if (!result.success) {
-      const issues = fromZodError(result.error);
-      throw new Error(issues.message);
-    }
     this.postTitle = obj.postTitle;
     this.postPicture = obj.postPicture;
     this.userId = obj.userId;
     this.isPublic = obj.isPublic;
     this.postDescription = obj.postDescription;
+  }
+
+  public static async validate(obj:Post) {
+    try {
+      await Posts.schema.validate(obj, { abortEarly: false });
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        const validationErrors = error.errors;
+        throw new Error(`Validation Error : ${validationErrors.join(', ')}`);
+      } else {
+        throw new Error('Unknown Error');
+      }
+    }
   }
 
   getPost() {
