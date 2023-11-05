@@ -42,3 +42,6 @@ export interface ICRUDModelDeleterUser{
 export interface ICRUDModelDeleter{
   delete(id:number):Promise<number>
 }
+export interface ICRUDModelDeleterLikes{
+  delete(userId:number, postId:number):Promise<number>
+}

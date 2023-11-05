@@ -42,7 +42,6 @@ PostLikes.init({
   underscored: true,
 });
 
-User.hasMany(PostLikes, { foreignKey: 'userId', as: 'postsLikes' });
 Post.hasMany(PostLikes, { foreignKey: 'postId', as: 'usersWichLiked' });
-
+PostLikes.hasOne(User, { foreignKey: 'id', as: 'user' });
 export default PostLikes;

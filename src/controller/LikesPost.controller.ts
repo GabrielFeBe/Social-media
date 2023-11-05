@@ -15,8 +15,9 @@ export default class LikesPostsController implements ILikesPostsController {
   }
 
   async deleteLikePost(req:Request, res: Response): Promise<Response> {
+    const { userId } = req.body;
     const { id } = req.params;
-    const response = await this.Service.deleteLikePost(+id);
+    const response = await this.Service.deleteLikePost(+userId, +id);
     return res.status(204).json(response);
   }
 }

@@ -11,10 +11,11 @@ export default class LikesPosts implements IPostLikeModel {
     return response;
   }
 
-  delete(id: number): Promise<number> {
+  delete(userId:number, postId:number): Promise<number> {
     const response = this.Model.destroy({ 
       where: {
-        id,
+        userId,
+        postId,
       },
     });
     return response;

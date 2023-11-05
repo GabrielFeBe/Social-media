@@ -1,3 +1,4 @@
+import PostLikes from '../../database/models/LikePosts';
 import Post from '../../database/models/Post';
 import PostsComments from '../../database/models/PostsComments';
 import User from '../../database/models/User';
@@ -40,7 +41,21 @@ class PostModel implements IPostModel {
           },
         ],
 
-      }],
+      }, {
+        model: PostLikes,
+        as: 'usersWichLiked',
+        attributes: ['userId'],
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name', 'email', 'profilePicture', 'local', 'description'],
+          },
+        ],
+     
+      },
+
+      ],
     });
     return response;
   }

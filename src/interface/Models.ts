@@ -5,7 +5,8 @@ import { ICRUDFriendsModel, ICRUDModelCommentsReader, ICRUDModelCreator, ICRUDMo
   ICRUDModelUpdater,
   ICRUDModelUserReader,
   ICRUDModelCreatorUser,
-  ICRUDModelDeleterUser } from './ICRUD';
+  ICRUDModelDeleterUser, 
+  ICRUDModelDeleterLikes } from './ICRUD';
 import Post from './Post';
 import PostComments from './PostsComments';
 import { IUser } from './Tuser';
@@ -24,4 +25,4 @@ export type IPostCommentsModel = ICRUDModelCreator<PostComments> & ICRUDModelUpd
 & ICRUDModelCommentsReader<PostComments> & ICRUDModelDeleter 
 & Omit<ICRUDModelReader<PostComments>, 'findAll'>;
 
-export type IPostLikeModel = ICRUDModelCreator<PostL> & ICRUDModelDeleter;
+export type IPostLikeModel = ICRUDModelCreator<PostL> & ICRUDModelDeleterLikes;

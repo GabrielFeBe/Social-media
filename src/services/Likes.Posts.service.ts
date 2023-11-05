@@ -14,8 +14,8 @@ export default class LikesPostsService implements ILikesPostsService {
     return likePost;
   }
 
-  public async deleteLikePost(id: number): Promise<number> {
-    const likePost = await this.Model.delete(id);
+  public async deleteLikePost(userId: number, postId:number): Promise<number> {
+    const likePost = await this.Model.delete(userId, postId);
     return likePost;
   }
 }
