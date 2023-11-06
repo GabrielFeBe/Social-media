@@ -25,6 +25,8 @@ router.post('/login', async (req:Request, res:Response) => controller.loginUser(
 
 router.delete('/:id', async (req:Request, res:Response) => controller.deleteUserId(req, res));
 
+router.patch('/:id', async (req:Request, res:Response) => controller.update(req, res));
+
 router.get('/names', async (req:Request, res:Response) => controller.getAllUserByName(req, res));
 
 router.get('/:id', async (req:Request, res:Response) => controller.getUserId(req, res));

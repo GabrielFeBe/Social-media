@@ -101,4 +101,8 @@ export default class UserModel implements IUserModel {
     } });
     return response;
   }
+
+  update(id: number, data: Partial<IUser>): Promise<IUser | null> {
+    throw new Error('Method not implemented.');
+  }
 }

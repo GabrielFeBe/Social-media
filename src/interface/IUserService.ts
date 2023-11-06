@@ -9,4 +9,5 @@ export default interface IUserService{
   loginUser(email:string, password:string):Promise<string>
   createUserNotification(userId:number):Promise<boolean>
   deleteUserNotification(userId:number):Promise<number>
+  update(id:number, data:Partial<IUser>):Promise<IUser >
 }

@@ -87,7 +87,21 @@ class PostModel implements IPostModel {
         },
       ],
 
-    }],
+    }, {
+      model: PostLikes,
+      as: 'usersWichLiked',
+      attributes: ['userId'],
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['id', 'name', 'email', 'profilePicture', 'local', 'description'],
+        },
+      ],
+   
+    },
+  
+    ],
   
     });
     return response;

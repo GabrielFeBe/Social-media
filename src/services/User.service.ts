@@ -73,4 +73,10 @@ export default class UserService implements IUserService {
     if (!response) throw new Error('Erro ao deletar notificação');
     return response;
   }
+
+  async update(id: number, data: Partial<IUser>): Promise<IUser> {
+    const response = await this.Model.update(id, data);
+    if (!response) throw new Error('Something went wrong when updating user');
+    return response;
+  }
 }

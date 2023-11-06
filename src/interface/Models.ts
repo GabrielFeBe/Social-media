@@ -15,7 +15,7 @@ import PostL from './post/ILikePosts';
 export type IPostModel = ICRUDModelCreator<Post> & ICRUDModelDeleter & ICRUDModelPostReader<Post>; 
 
 export type IUserModel = ICRUDModelCreatorUser<IUser> & 
-ICRUDModelDeleterUser & ICRUDModelUserReader<IUser>;
+ICRUDModelDeleterUser & ICRUDModelUserReader<IUser> & ICRUDModelUpdater<IUser>;
 
 export type IFriendsModel = ICRUDModelCreator<FriendRequest> 
 & ICRUDModelDeleter & ICRUDFriendsModel<IUser> & ICRUDModelUpdater<FriendRequest> 
