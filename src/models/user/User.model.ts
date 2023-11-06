@@ -102,7 +102,10 @@ export default class UserModel implements IUserModel {
     return response;
   }
 
-  update(id: number, data: Partial<IUser>): Promise<IUser | null> {
-    throw new Error('Method not implemented.');
+  async update(id: number, data: Partial<IUser>): Promise<IUser | null> {
+    const response = await this.Model.update(data, { where: {
+      id,
+    } });
+    return response[0] ? this.findById(id) : null;
   }
 }
