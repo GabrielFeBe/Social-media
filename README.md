@@ -294,7 +294,7 @@ This project is licensed under no license =/.
 
 ## Images
 
-- Well i still don't have acess to a server to be able to upload images, so the accounts are not provided with a profile picture, but i will be able to do it soon.
+- The images Links come from https://dashboard.edgestore.dev/, so it's only integrated with the frontend, but you can change it to use your own image hosting service. but you'll have to change the code at the frontend too.
 
 ## Frontend
 
