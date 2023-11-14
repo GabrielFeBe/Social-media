@@ -1,6 +1,7 @@
 import { IPostCommentsModel } from '../../interface/Models';
 import IPostsComments from '../../interface/PostsComments';
 import PostsCommentsModel from '../../database/models/PostsComments';
+import User from '../../database/models/User';
 
 class PostsComments implements IPostCommentsModel {
   private Model = PostsCommentsModel;
@@ -19,7 +20,13 @@ class PostsComments implements IPostCommentsModel {
 
   async create(data: Omit<IPostsComments, 'id'>): Promise<IPostsComments> {
     const response = await this.Model.create(data);
-    return response;
+    const resonseCommentWithUser = await this.Model.findByPk(response.id, {
+      include: [
+        { model: User, as: 'user' },
+      ],
+    });
+    if (!resonseCommentWithUser) throw new Error('Error on create comment');
+    return resonseCommentWithUser;
   }
 
   async findByPostId(id: number): Promise<IPostsComments[]> {
