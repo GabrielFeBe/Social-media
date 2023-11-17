@@ -74,9 +74,8 @@ export default class UserService implements IUserService {
     return response;
   }
 
-  async update(id: number, data: Partial<IUser>): Promise<IUser> {
+  async update(id: number, data: Partial<IUser>): Promise<IUser | null> {
     const response = await this.Model.update(id, data);
-    if (!response) throw new Error('Something went wrong when updating user');
     return response;
   }
 }
